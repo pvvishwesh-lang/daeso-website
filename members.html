@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members - DAESO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo img {
+            height: 70px;
+            width: 70px;
+            object-fit: contain;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        nav a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: white;
+            padding: 6rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(60px);
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        /* Members Grid */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            cursor: pointer;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .member-image {
+            width: 100%;
+            height: 320px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .member-card:hover .member-image::after {
+            opacity: 1;
+        }
+
+        .member-info {
+            padding: 2rem;
+        }
+
+        .member-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-social {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .member-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+        }
+
+        .member-social a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(-3px);
+        }
+
+        .member-social svg {
+            width: 18px;
+            height: 18px;
+            fill: #667eea;
+        }
+
+        .member-social a:hover svg {
+            fill: white;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ddd, transparent);
+            margin: 4rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            margin-top: 0;
+        }
+
+        footer p {
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+
+        .social-links svg {
+            height: 22px;
+            width: 22px;
+            fill: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            main {
+                padding: 3rem 1.5rem;
+            }
+        }
+
+        /* Member Detail Modal */
+        .member-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .member-modal.active {
+            display: flex;
+        }
+
+        .member-modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .member-modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .member-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .member-modal-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .modal-member-image {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            margin: 0 auto 1rem;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .modal-member-name {
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-member-role {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .member-modal-body {
+            padding: 2.5rem;
+        }
+
+        .modal-detail {
+            margin-bottom: 2rem;
+        }
+
+        .modal-detail-label {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-detail-value {
+            color: #1a1a1a;
+            font-size: 1rem;
+            word-break: break-word;
+        }
+
+        .modal-detail-value a {
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .modal-detail-value a:hover {
+            text-decoration: underline;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .modal-btn-secondary {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .modal-btn-secondary:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <img src="https://drive.google.com/thumbnail?id=1l4Ahk2ZLlJdeUc-mbY7SKEbqeL8bO7as" alt="Club Logo">
+                </a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#activities">Activities</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Our Team</h1>
+            <p>Meet the passionate leaders and members driving DAESO forward</p>
+        </div>
+    </section>
+
+    <main>
+        <section>
+            <h2>Student Leadership</h2>
+            <p class="section-subtitle">The core team leading DAESO's mission and vision</p>
+            <div class="members-grid" id="leadershipGrid">
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section>
+            <h2>Club Advisors</h2>
+            <p class="section-subtitle">Faculty and industry mentors guiding our organization</p>
+            <div class="members-grid" id="advisorsGrid">
+            </div>
+        </section>
+    </main>
+
+    <!-- Member Detail Modal -->
+    <div class="member-modal" id="memberModal">
+        <div class="member-modal-content">
+            <div class="member-modal-header">
+                <button class="member-modal-close" onclick="closeMemberModal()">×</button>
+                <div class="modal-member-image" id="modalImage">👤</div>
+                <div class="modal-member-name" id="modalName">Member Name</div>
+                <div class="modal-member-role" id="modalRole">Role</div>
+            </div>
+            <div class="member-modal-body">
+                <div class="modal-detail">
+                    <div class="modal-detail-label">Biography</div>
+                    <div class="modal-detail-value" id="modalBio">Bio will appear here</div>
+                </div>
+                <div class="modal-detail">
+                    <div class="modal-detail-label">Email</div>
+                    <div class="modal-detail-value" id="modalEmail">
+                        <a href="mailto:email@example.com" id="modalEmailLink">email@example.com</a>
+                    </div>
+                </div>
+                <div class="modal-detail">
+                    <div class="modal-detail-label">LinkedIn</div>
+                    <div class="modal-detail-value">
+                        <a href="#" id="modalLinkedIn" target="_blank">View Profile →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> DAESO</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/daeso-data-analytics-engineering-student-organization-62bb5b388/"
+                target="_blank" title="LinkedIn">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                </svg>
+            </a>
+            <a href="https://www.instagram.com/nu_daeso/" target="_blank" title="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path
+                        d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1utxqprh2fas94E-6vJWMq8bdf10_9J3VFtwZqOHv7Uk/export?format=csv';
+
+        function createMemberCard(member) {
+            const linkedInLink = member.linkedin && member.linkedin !== '#' ? member.linkedin : '#';
+            return `
+                <div class="member-card" onclick="openMemberModal(${JSON.stringify(member).replace(/"/g, '&quot;')})">
+                    <div class="member-image">${typeof member.image === 'string' && member.image.includes('http') ? `<img src="${member.image}" alt="${member.name}">` : member.image}</div>
+                    <div class="member-info">
+                        <div class="member-name">${member.name}</div>
+                        <div class="member-role">${member.role}</div>
+                        <div class="member-bio">${member.bio}</div>
+                        <div class="member-social">
+                            ${linkedInLink !== '#' ? `<a href="${linkedInLink}" target="_blank" title="LinkedIn" onclick="event.stopPropagation()">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+                            </a>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openMemberModal(member) {
+            const modal = document.getElementById('memberModal');
+            document.getElementById('modalImage').textContent = typeof member.image === 'string' && member.image.includes('http') ? '' : member.image;
+            
+            if (typeof member.image === 'string' && member.image.includes('http')) {
+                document.getElementById('modalImage').innerHTML = `<img src="${member.image}" alt="${member.name}">`;
+            }
+            
+            document.getElementById('modalName').textContent = member.name;
+            document.getElementById('modalRole').textContent = member.role;
+            document.getElementById('modalBio').textContent = member.bio;
+            
+            if (member.email) {
+                document.getElementById('modalEmailLink').href = `mailto:${member.email}`;
+                document.getElementById('modalEmailLink').textContent = member.email;
+            }
+            
+            if (member.linkedin && member.linkedin !== '#') {
+                document.getElementById('modalLinkedIn').href = member.linkedin;
+            } else {
+                document.getElementById('modalLinkedIn').style.pointerEvents = 'none';
+                document.getElementById('modalLinkedIn').style.opacity = '0.5';
+            }
+            
+            modal.classList.add('active');
+        }
+
+        function closeMemberModal() {
+            document.getElementById('memberModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('memberModal').addEventListener('click', function(e) {
+            if (e.target === this) closeMemberModal();
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMemberModal();
+        });
+
+        function parseCSVToMembers(csv) {
+            const lines = csv.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const officers = [];
+
+            // Find column indices
+            const isActiveIndex = headers.findIndex(h => h.toLowerCase() === 'isactive');
+            const roleIndex = headers.findIndex(h => h.toLowerCase() === 'role');
+            const memberTypeIndex = headers.findIndex(h => h.toLowerCase() === 'membertype' || h.toLowerCase() === 'type');
+
+            for (let i = 1; i < lines.length; i++) {
+                const cells = lines[i].split(',').map(c => c.trim());
+
+                // Check if active
+                const isActive = isActiveIndex >= 0 ? cells[isActiveIndex] === '1' : true;
+
+                if (isActive && cells.length >= 3) {
+                    const memberType = memberTypeIndex >= 0 ? cells[memberTypeIndex].toLowerCase() : 'leadership';
+                    
+                    officers.push({
+                        name: cells[0] || 'Member Name',
+                        role: cells[1] || 'Member',
+                        bio: cells[2] || 'Contributing to DAESO',
+                        email: cells[3] || '',
+                        linkedin: cells[4] || '#',
+                        image: cells[5] || '👤',
+                        type: memberType
+                    });
+                }
+            }
+
+            return officers;
+        }
+
+        fetch(SHEET_URL)
+            .then(response => response.text())
+            .then(csv => {
+                const allMembers = parseCSVToMembers(csv);
+
+                // Filter by type
+                const leadership = allMembers.filter(m => m.type === 'leadership' || m.type === 'student');
+                const advisors = allMembers.filter(m => m.type === 'advisor');
+
+                // Populate grids
+                document.getElementById('leadershipGrid').innerHTML = leadership.map(createMemberCard).join('') || '<p>No leadership members found</p>';
+                document.getElementById('advisorsGrid').innerHTML = advisors.map(createMemberCard).join('') || '<p>No advisors found</p>';
+            })
+            .catch(error => {
+                console.error('Error fetching officers:', error);
+                document.getElementById('leadershipGrid').innerHTML = '<p>Error loading members</p>';
+            });
+    </script>
+</body>
+
+</html>
