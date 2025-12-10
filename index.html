@@ -569,10 +569,9 @@
     </footer>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-        const SHEET_ID = '1h53xpQWJ-AC_abd2t3QJrxecLmLskVfktt8bobAYLJ0';
+        const SHEET_ID = '16ZdVXtYaqyEI-UkCQpOGRRc8dr6MtNe7DqQiaNnbrPo';
         const GALLERY_SHEET = 'Gallery';
         const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${GALLERY_SHEET}`;
-
         // Fetch hero images from Google Sheet
         fetch(SHEET_URL)
             .then(response => response.text())
