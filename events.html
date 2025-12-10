@@ -299,6 +299,7 @@
                 transform: translateY(30px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -477,6 +478,297 @@
                 padding: 3rem 1.5rem;
             }
         }
+
+        /* Add these styles to each of your HTML files */
+
+        /* Hamburger Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a1a1a;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                display: block;
+                padding: 0.5rem 0;
+            }
+
+            /* Hero Section Mobile */
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .hero-visual {
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            .visual-box {
+                width: 100px;
+                height: 100px;
+            }
+
+            /* Page Header Mobile */
+            .page-header {
+                padding: 4rem 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            /* Main Content Mobile */
+            main {
+                padding: 3rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            /* About Section Mobile */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-visual {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .visual-card {
+                padding: 1rem;
+                font-size: 2rem;
+            }
+
+            .visual-card svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            .visual-card-label {
+                font-size: 0.85rem;
+            }
+
+            /* Activities Grid Mobile */
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .activity-card {
+                padding: 2rem;
+            }
+
+            /* Events Mobile */
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+
+            .event-date {
+                padding: 1.5rem;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+
+            .event-day {
+                font-size: 2rem;
+            }
+
+            .event-details {
+                padding: 1.5rem;
+            }
+
+            /* Gallery Mobile */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            /* Members Mobile */
+            .members-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .member-image {
+                height: 280px;
+            }
+
+            /* Modal Mobile */
+            .event-modal-content,
+            .member-modal-content {
+                max-width: 95%;
+                margin: 1rem;
+            }
+
+            .event-modal-body,
+            .member-modal-body {
+                padding: 2rem;
+            }
+
+            .lightbox-content {
+                max-width: 95%;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            /* Footer Mobile */
+            footer {
+                padding: 2rem 1.5rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-links a {
+                width: 40px;
+                height: 40px;
+            }
+
+            .social-links svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            /* Button Mobile */
+            .btn {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            /* Touch-friendly spacing */
+            .event-card,
+            .activity-card,
+            .member-card,
+            .gallery-item {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-visual {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-card {
+                aspect-ratio: auto;
+                padding: 2rem;
+            }
+
+            nav ul {
+                width: 85%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -516,7 +808,7 @@
                 <!-- Upcoming events will be loaded here -->
             </div>
         </section>
-        
+
         <section id="pastEventsSection" style="display: none;">
             <h2>Past Events</h2>
             <div class="events-container" id="pastEventsContainer">
@@ -581,7 +873,7 @@
 
         function parseDate(dateStr) {
             if (!dateStr) return null;
-            
+
             // Handle Google Sheets date format
             if (typeof dateStr === 'string' && dateStr.startsWith('Date(')) {
                 const matches = dateStr.match(/Date\((\d+),(\d+),(\d+)\)/);
@@ -592,7 +884,7 @@
                     return new Date(year, month, day);
                 }
             }
-            
+
             const date = new Date(dateStr);
             return isNaN(date) ? null : date;
         }
@@ -644,20 +936,20 @@
         function openEventModal(event) {
             currentEvent = event;
             const isClosed = isRegistrationClosed(event.regDeadline);
-            
+
             document.getElementById('modalEventTitle').textContent = event.eventTitle;
             document.getElementById('modalEventTime').textContent = event.eventTime;
             document.getElementById('modalEventDescription').textContent = event.description;
             document.getElementById('modalEventLocation').textContent = event.location;
             document.getElementById('modalRegDeadline').textContent = formatDate(parseDate(event.regDeadline));
-            
+
             const registerBtn = document.getElementById('modalRegisterBtn');
             registerBtn.disabled = isClosed;
             registerBtn.textContent = isClosed ? 'Registration Closed' : 'Register Now';
             if (event.registrationLink) {
                 registerBtn.onclick = () => window.open(event.registrationLink, '_blank');
             }
-            
+
             document.getElementById('eventModal').classList.add('active');
         }
 
@@ -672,11 +964,11 @@
             }
         }
 
-        document.getElementById('eventModal').addEventListener('click', function(e) {
+        document.getElementById('eventModal').addEventListener('click', function (e) {
             if (e.target === this) closeEventModal();
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeEventModal();
         });
 
@@ -685,11 +977,11 @@
             .then(data => {
                 const jsonString = data.substring(data.indexOf('{'), data.lastIndexOf('}') + 1);
                 const json = JSON.parse(jsonString);
-                
+
                 const rows = json.table.rows;
                 const upcomingEvents = [];
                 const pastEvents = [];
-                
+
                 rows.forEach(row => {
                     const values = row.c;
                     const event = {
@@ -702,7 +994,7 @@
                         registrationLink: values[6]?.v || '',
                         isActive: values[7]?.v || '0'
                     };
-                    
+
                     if (event.isActive === '1' || event.isActive === 1) {
                         if (isEventPast(event.eventDate)) {
                             pastEvents.push(event);
@@ -711,29 +1003,29 @@
                         }
                     }
                 });
-                
+
                 upcomingEvents.sort((a, b) => {
                     const dateA = parseDate(a.eventDate);
                     const dateB = parseDate(b.eventDate);
                     return dateA - dateB;
                 });
-                
+
                 pastEvents.sort((a, b) => {
                     const dateA = parseDate(a.eventDate);
                     const dateB = parseDate(b.eventDate);
                     return dateB - dateA;
                 });
-                
+
                 const upcomingContainer = document.getElementById('upcomingEventsContainer');
                 const pastContainer = document.getElementById('pastEventsContainer');
                 const pastSection = document.getElementById('pastEventsSection');
-                
+
                 if (upcomingEvents.length > 0) {
                     upcomingContainer.innerHTML = upcomingEvents.map(createEventCard).join('');
                 } else {
                     upcomingContainer.innerHTML = '<p>No upcoming events scheduled at the moment. Check back soon!</p>';
                 }
-                
+
                 if (pastEvents.length > 0) {
                     pastContainer.innerHTML = pastEvents.map(createEventCard).join('');
                     pastSection.style.display = 'block';
@@ -745,6 +1037,44 @@
                 console.error('Error fetching events:', error);
                 document.getElementById('upcomingEventsContainer').innerHTML = '<p>Error loading events. Please try again later.</p>';
             });
+
+        // Add this JavaScript to each HTML file
+
+        // Mobile Menu Toggle
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<span></span><span></span><span></span>';
+        menuToggle.setAttribute('aria-label', 'Toggle menu');
+
+        const nav = document.querySelector('nav');
+        const navUl = document.querySelector('nav ul');
+
+        // Insert menu toggle before the nav ul
+        navUl.parentNode.insertBefore(menuToggle, navUl);
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navUl.classList.toggle('active');
+            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav ul a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navUl.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && navUl.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navUl.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
 

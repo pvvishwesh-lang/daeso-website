@@ -392,6 +392,7 @@
                 transform: translateY(30px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -531,6 +532,297 @@
         .modal-btn-secondary:hover {
             background: rgba(102, 126, 234, 0.2);
         }
+
+        /* Add these styles to each of your HTML files */
+
+        /* Hamburger Menu for Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #1a1a1a;
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Navigation */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                gap: 2rem;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                width: 100%;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                display: block;
+                padding: 0.5rem 0;
+            }
+
+            /* Hero Section Mobile */
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero-text p {
+                font-size: 1rem;
+            }
+
+            .hero-visual {
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            .visual-box {
+                width: 100px;
+                height: 100px;
+            }
+
+            /* Page Header Mobile */
+            .page-header {
+                padding: 4rem 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+
+            /* Main Content Mobile */
+            main {
+                padding: 3rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            /* About Section Mobile */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-visual {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+
+            .visual-card {
+                padding: 1rem;
+                font-size: 2rem;
+            }
+
+            .visual-card svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            .visual-card-label {
+                font-size: 0.85rem;
+            }
+
+            /* Activities Grid Mobile */
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .activity-card {
+                padding: 2rem;
+            }
+
+            /* Events Mobile */
+            .event-card {
+                grid-template-columns: 1fr;
+            }
+
+            .event-date {
+                padding: 1.5rem;
+                flex-direction: row;
+                justify-content: flex-start;
+                gap: 1rem;
+            }
+
+            .event-day {
+                font-size: 2rem;
+            }
+
+            .event-details {
+                padding: 1.5rem;
+            }
+
+            /* Gallery Mobile */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            /* Members Mobile */
+            .members-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .member-image {
+                height: 280px;
+            }
+
+            /* Modal Mobile */
+            .event-modal-content,
+            .member-modal-content {
+                max-width: 95%;
+                margin: 1rem;
+            }
+
+            .event-modal-body,
+            .member-modal-body {
+                padding: 2rem;
+            }
+
+            .lightbox-content {
+                max-width: 95%;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            /* Footer Mobile */
+            footer {
+                padding: 2rem 1.5rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-links a {
+                width: 40px;
+                height: 40px;
+            }
+
+            .social-links svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            /* Button Mobile */
+            .btn {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+            }
+
+            /* Touch-friendly spacing */
+            .event-card,
+            .activity-card,
+            .member-card,
+            .gallery-item {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-visual {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-card {
+                aspect-ratio: auto;
+                padding: 2rem;
+            }
+
+            nav ul {
+                width: 85%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -657,27 +949,27 @@
         function openMemberModal(member) {
             const modal = document.getElementById('memberModal');
             document.getElementById('modalImage').textContent = typeof member.image === 'string' && member.image.includes('http') ? '' : member.image;
-            
+
             if (typeof member.image === 'string' && member.image.includes('http')) {
                 document.getElementById('modalImage').innerHTML = `<img src="${member.image}" alt="${member.name}">`;
             }
-            
+
             document.getElementById('modalName').textContent = member.name;
             document.getElementById('modalRole').textContent = member.role;
             document.getElementById('modalBio').textContent = member.bio;
-            
+
             if (member.email) {
                 document.getElementById('modalEmailLink').href = `mailto:${member.email}`;
                 document.getElementById('modalEmailLink').textContent = member.email;
             }
-            
+
             if (member.linkedin && member.linkedin !== '#') {
                 document.getElementById('modalLinkedIn').href = member.linkedin;
             } else {
                 document.getElementById('modalLinkedIn').style.pointerEvents = 'none';
                 document.getElementById('modalLinkedIn').style.opacity = '0.5';
             }
-            
+
             modal.classList.add('active');
         }
 
@@ -686,12 +978,12 @@
         }
 
         // Close modal when clicking outside
-        document.getElementById('memberModal').addEventListener('click', function(e) {
+        document.getElementById('memberModal').addEventListener('click', function (e) {
             if (e.target === this) closeMemberModal();
         });
 
         // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeMemberModal();
         });
 
@@ -713,7 +1005,7 @@
 
                 if (isActive && cells.length >= 3) {
                     const memberType = memberTypeIndex >= 0 ? cells[memberTypeIndex].toLowerCase() : 'leadership';
-                    
+
                     officers.push({
                         name: cells[0] || 'Member Name',
                         role: cells[1] || 'Member',
@@ -746,6 +1038,44 @@
                 console.error('Error fetching officers:', error);
                 document.getElementById('leadershipGrid').innerHTML = '<p>Error loading members</p>';
             });
+
+        // Add this JavaScript to each HTML file
+
+        // Mobile Menu Toggle
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<span></span><span></span><span></span>';
+        menuToggle.setAttribute('aria-label', 'Toggle menu');
+
+        const nav = document.querySelector('nav');
+        const navUl = document.querySelector('nav ul');
+
+        // Insert menu toggle before the nav ul
+        navUl.parentNode.insertBefore(menuToggle, navUl);
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navUl.classList.toggle('active');
+            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav ul a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navUl.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!nav.contains(e.target) && navUl.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navUl.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
     </script>
 </body>
 
