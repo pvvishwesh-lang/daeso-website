@@ -94,7 +94,7 @@
             width: 100%;
         }
 
-        /* Page Header */
+        /* Page Header - FIXED */
         .page-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             color: white;
@@ -102,6 +102,8 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            min-height: 400px;
+            width: 100%;
         }
 
         .page-header::before {
@@ -114,6 +116,8 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .page-header-content {
@@ -136,11 +140,14 @@
             opacity: 0.95;
         }
 
-        /* Main Content */
+        /* Main Content - FIXED */
         main {
             max-width: 1400px;
             margin: 0 auto;
             padding: 5rem 3rem;
+            background: #fafafa;
+            position: relative;
+            z-index: 1;
         }
 
         h2 {
@@ -299,7 +306,6 @@
                 transform: translateY(30px);
                 opacity: 0;
             }
-
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -444,43 +450,6 @@
             fill: white;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            nav {
-                padding: 0 1.5rem;
-            }
-
-            nav ul {
-                gap: 1.5rem;
-                font-size: 0.85rem;
-            }
-
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-
-            .event-card {
-                grid-template-columns: 1fr;
-            }
-
-            .event-date {
-                padding: 1.5rem;
-                flex-direction: row;
-                justify-content: flex-start;
-                gap: 1rem;
-            }
-
-            .event-day {
-                font-size: 2rem;
-            }
-
-            main {
-                padding: 3rem 1.5rem;
-            }
-        }
-
-        /* Add these styles to each of your HTML files */
-
         /* Hamburger Menu for Mobile */
         .menu-toggle {
             display: none;
@@ -551,38 +520,10 @@
                 padding: 0.5rem 0;
             }
 
-            /* Hero Section Mobile */
-            .hero {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-                letter-spacing: -1px;
-            }
-
-            .hero-text p {
-                font-size: 1rem;
-            }
-
-            .hero-visual {
-                flex-direction: row;
-                gap: 1rem;
-            }
-
-            .visual-box {
-                width: 100px;
-                height: 100px;
-            }
-
             /* Page Header Mobile */
             .page-header {
                 padding: 4rem 1.5rem;
+                min-height: 300px;
             }
 
             .page-header h1 {
@@ -600,41 +541,6 @@
 
             h2 {
                 font-size: 1.8rem;
-            }
-
-            /* About Section Mobile */
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-visual {
-                grid-template-columns: 1fr 1fr;
-                gap: 1rem;
-            }
-
-            .visual-card {
-                padding: 1rem;
-                font-size: 2rem;
-            }
-
-            .visual-card svg {
-                width: 35px;
-                height: 35px;
-            }
-
-            .visual-card-label {
-                font-size: 0.85rem;
-            }
-
-            /* Activities Grid Mobile */
-            .activities-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .activity-card {
-                padding: 2rem;
             }
 
             /* Events Mobile */
@@ -657,50 +563,14 @@
                 padding: 1.5rem;
             }
 
-            /* Gallery Mobile */
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 1rem;
-            }
-
-            /* Members Mobile */
-            .members-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .member-image {
-                height: 280px;
-            }
-
             /* Modal Mobile */
-            .event-modal-content,
-            .member-modal-content {
+            .event-modal-content {
                 max-width: 95%;
                 margin: 1rem;
             }
 
-            .event-modal-body,
-            .member-modal-body {
+            .event-modal-body {
                 padding: 2rem;
-            }
-
-            .lightbox-content {
-                max-width: 95%;
-            }
-
-            .lightbox-nav {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-
-            .lightbox-prev {
-                left: 10px;
-            }
-
-            .lightbox-next {
-                right: 10px;
             }
 
             /* Footer Mobile */
@@ -722,17 +592,8 @@
                 height: 18px;
             }
 
-            /* Button Mobile */
-            .btn {
-                padding: 0.9rem 2rem;
-                font-size: 0.95rem;
-            }
-
             /* Touch-friendly spacing */
-            .event-card,
-            .activity-card,
-            .member-card,
-            .gallery-item {
+            .event-card {
                 cursor: pointer;
                 -webkit-tap-highlight-color: transparent;
             }
@@ -740,10 +601,6 @@
 
         /* Small phones */
         @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 2rem;
-            }
-
             .page-header h1 {
                 font-size: 1.8rem;
             }
@@ -752,21 +609,8 @@
                 font-size: 1.5rem;
             }
 
-            .about-visual {
-                grid-template-columns: 1fr;
-            }
-
-            .visual-card {
-                aspect-ratio: auto;
-                padding: 2rem;
-            }
-
             nav ul {
                 width: 85%;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -874,7 +718,6 @@
         function parseDate(dateStr) {
             if (!dateStr) return null;
 
-            // Handle Google Sheets date format
             if (typeof dateStr === 'string' && dateStr.startsWith('Date(')) {
                 const matches = dateStr.match(/Date\((\d+),(\d+),(\d+)\)/);
                 if (matches) {
@@ -1038,8 +881,6 @@
                 document.getElementById('upcomingEventsContainer').innerHTML = '<p>Error loading events. Please try again later.</p>';
             });
 
-        // Add this JavaScript to each HTML file
-
         // Mobile Menu Toggle
         const menuToggle = document.createElement('button');
         menuToggle.className = 'menu-toggle';
@@ -1049,7 +890,6 @@
         const nav = document.querySelector('nav');
         const navUl = document.querySelector('nav ul');
 
-        // Insert menu toggle before the nav ul
         navUl.parentNode.insertBefore(menuToggle, navUl);
 
         menuToggle.addEventListener('click', () => {
@@ -1058,7 +898,6 @@
             document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Close menu when clicking on a link
         document.querySelectorAll('nav ul a').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
@@ -1067,7 +906,6 @@
             });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!nav.contains(e.target) && navUl.classList.contains('active')) {
                 menuToggle.classList.remove('active');
