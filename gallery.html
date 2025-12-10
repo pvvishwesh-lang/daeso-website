@@ -306,6 +306,13 @@
             right: 20px;
         }
 
+        .loading-message {
+            text-align: center;
+            color: #666;
+            padding: 3rem;
+            font-size: 1rem;
+        }
+
         /* Footer */
         footer {
             background: #1a1a1a;
@@ -429,7 +436,7 @@
             <h2>Memories</h2>
             <p class="section-subtitle">Relive the highlights and special moments from our journey</p>
             <div class="gallery-grid" id="galleryGrid">
-                <!-- Gallery images will be populated by JavaScript -->
+                <div class="loading-message">Loading gallery...</div>
             </div>
         </section>
     </main>
@@ -464,25 +471,17 @@
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // GALLERY CONFIGURATION - Update image URLs here
-        const galleryImages = [
-            { url: 'https://drive.google.com/thumbnail?id=1ecKDB3049fsrmvXOjsRRt055UgM47uwN&sz=w800', title: 'Faculty Connect' },
-            { url: 'https://drive.google.com/thumbnail?id=1gOdmXfwJNpzT8_s3Lr9bCkfjBt1yggwU&sz=w800', title: 'Faculty Connect' },
-            { url: 'https://drive.google.com/thumbnail?id=12LdrpoZWLaHFytMZFATKb-siKOBOXykm&sz=w800', title: 'SQL Workshop' },
-            { url: 'https://drive.google.com/thumbnail?id=1B1bOwYXzEScX7wTuXK_DfdW0Xs65J-ei&sz=w800', title: 'SQL Workshop' },
-            { url: 'https://drive.google.com/thumbnail?id=1Y6HvBJXcavLkO4jT3GfREHkNBgw2VUpk&sz=w800', title: 'Panel SQL Workshop' },
-            { url: 'https://drive.google.com/thumbnail?id=1y0yn23EYNL9XZ7ycn21blK7fTa2B8-Vl&sz=w800', title: 'SQL Workshop' },
-            { url: 'https://drive.google.com/thumbnail?id=1z_vDR7j7XNYErY0JtdQ9XniystB9oRRS&sz=w800', title: 'SQL Workshop' },
-            { url: 'https://drive.google.com/thumbnail?id=1b14cc0vUyiGz476UfiJoDWTHF2yb-WLZ&sz=w800', title: 'SQL Workshop' },
-            { url: 'https://drive.google.com/thumbnail?id=1ZdkrZzgk5jFQSKyvRNCKr-MK-chGGw6h&sz=w800', title: 'SQL Workshop' }
-        ];
-
+        // Google Sheets Configuration
+        const SHEET_ID = '16ZdVXtYaqyEI-UkCQpOGRRc8dr6MtNe7DqQiaNnbrPo';
+        const GALLERY_SHEET = 'Gallery';
+        const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${GALLERY_SHEET}`;
+        let galleryImages = [];
         let currentImageIndex = 0;
 
         function createGalleryItem(image, index) {
             return `
                 <div class="gallery-item" onclick="openLightbox(${index})">
-                    <img src="${image.url}" alt="${image.title}">
+                    <img src="${image.imageUrl}" alt="${image.title}">
                     <div class="gallery-overlay">
                         <div class="gallery-title">${image.title}</div>
                     </div>
@@ -492,14 +491,18 @@
 
         function renderGallery() {
             const galleryGrid = document.getElementById('galleryGrid');
-            galleryGrid.innerHTML = galleryImages.map((image, index) => createGalleryItem(image, index)).join('');
+            if (galleryImages.length > 0) {
+                galleryGrid.innerHTML = galleryImages.map((image, index) => createGalleryItem(image, index)).join('');
+            } else {
+                galleryGrid.innerHTML = '<div class="loading-message">No images available at the moment.</div>';
+            }
         }
 
         function openLightbox(index) {
             currentImageIndex = index;
             const modal = document.getElementById('lightboxModal');
             const img = document.getElementById('lightboxImage');
-            img.src = galleryImages[index].url;
+            img.src = galleryImages[index].imageUrl;
             modal.classList.add('active');
         }
 
@@ -509,12 +512,12 @@
 
         function nextImage() {
             currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex].url;
+            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex].imageUrl;
         }
 
         function previousImage() {
             currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex].url;
+            document.getElementById('lightboxImage').src = galleryImages[currentImageIndex].imageUrl;
         }
 
         // Keyboard navigation
@@ -531,7 +534,36 @@
             if (e.target === this) closeLightbox();
         });
 
-        renderGallery();
+        // Fetch gallery images from Google Sheet
+        fetch(SHEET_URL)
+            .then(response => response.text())
+            .then(data => {
+                const jsonString = data.substring(data.indexOf('{'), data.lastIndexOf('}') + 1);
+                const json = JSON.parse(jsonString);
+                
+                const rows = json.table.rows;
+                galleryImages = [];
+                
+                rows.forEach(row => {
+                    const values = row.c;
+                    const image = {
+                        title: values[0]?.v || 'DAESO Event',
+                        imageUrl: values[1]?.v || '',
+                        isActive: values[2]?.v || '0'
+                    };
+                    
+                    // Only include active images
+                    if ((image.isActive === '1' || image.isActive === 1) && image.imageUrl) {
+                        galleryImages.push(image);
+                    }
+                });
+                
+                renderGallery();
+            })
+            .catch(error => {
+                console.error('Error fetching gallery images:', error);
+                document.getElementById('galleryGrid').innerHTML = '<div class="loading-message">Error loading gallery. Please try again later.</div>';
+            });
     </script>
 </body>
 </html>
